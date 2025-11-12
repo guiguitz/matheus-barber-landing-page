@@ -1,0 +1,1062 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 4.5rem;
+
+  /*========== Colors ==========*/
+  --first-color: #d4af37;
+  --first-color-alt: #b8941e;
+  --title-color: #1a1a1a;
+  --text-color: #555555;
+  --text-color-light: #888888;
+  --body-color: #ffffff;
+  --container-color: #f8f8f8;
+  --black-color: #000000;
+  --white-color: #ffffff;
+  --border-color: #e0e0e0;
+
+  /*========== Font and typography ==========*/
+  --body-font: 'Poppins', sans-serif;
+  --title-font: 'Playfair Display', serif;
+  --biggest-font-size: 3rem;
+  --h1-font-size: 2.5rem;
+  --h2-font-size: 2rem;
+  --h3-font-size: 1.5rem;
+  --normal-font-size: 1rem;
+  --small-font-size: 0.875rem;
+  --smaller-font-size: 0.813rem;
+
+  /*========== Font weight ==========*/
+  --font-light: 300;
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semi-bold: 600;
+  --font-bold: 700;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+  --z-modal: 1000;
+
+  /*========== Margins ==========*/
+  --mb-0-25: 0.25rem;
+  --mb-0-5: 0.5rem;
+  --mb-0-75: 0.75rem;
+  --mb-1: 1rem;
+  --mb-1-5: 1.5rem;
+  --mb-2: 2rem;
+  --mb-2-5: 2.5rem;
+  --mb-3: 3rem;
+}
+
+/* Responsive typography */
+@media screen and (max-width: 968px) {
+  :root {
+    --biggest-font-size: 2.25rem;
+    --h1-font-size: 2rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 0.938rem;
+    --small-font-size: 0.813rem;
+    --smaller-font-size: 0.75rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+  color: var(--title-color);
+  font-weight: var(--font-semi-bold);
+  font-family: var(--title-font);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+button,
+input {
+  border: none;
+  outline: none;
+  font-family: var(--body-font);
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.section {
+  padding: 6.5rem 0 2rem;
+}
+
+.section__title {
+  font-size: var(--h1-font-size);
+  font-weight: var(--font-bold);
+  text-align: center;
+  margin-bottom: var(--mb-0-5);
+}
+
+.section__subtitle {
+  display: block;
+  font-size: var(--small-font-size);
+  color: var(--first-color);
+  text-align: center;
+  margin-bottom: var(--mb-3);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: var(--font-medium);
+}
+
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--first-color);
+  color: var(--white-color);
+  padding: 1rem 2rem;
+  font-weight: var(--font-medium);
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--first-color-alt);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+}
+
+.button-primary {
+  background-color: var(--first-color);
+}
+
+.button-secondary {
+  background-color: var(--black-color);
+}
+
+.button-secondary:hover {
+  background-color: #333;
+}
+
+/*=============== HEADER ===============*/
+.header {
+  width: 100%;
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-fixed);
+  transition: background-color 0.4s;
+}
+
+.header.scroll-header {
+  background-color: rgba(0, 0, 0, 0.95);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+}
+
+.nav {
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 50px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  transition: filter 0.3s;
+}
+
+.nav__list {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav__link {
+  color: var(--white-color);
+  font-weight: var(--font-medium);
+  transition: color 0.3s;
+  position: relative;
+}
+
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--first-color);
+  transition: width 0.3s;
+}
+
+.nav__link:hover,
+.nav__link.active-link {
+  color: var(--first-color);
+}
+
+.nav__link:hover::after,
+.nav__link.active-link::after {
+  width: 100%;
+}
+
+.nav__toggle,
+.nav__close {
+  display: none;
+  color: var(--white-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/*=============== HOME ===============*/
+.home {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: var(--header-height);
+}
+
+.home__container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4rem;
+  align-items: center;
+}
+
+.home__data {
+  color: var(--white-color);
+}
+
+.home__title {
+  font-size: var(--biggest-font-size);
+  font-weight: var(--font-bold);
+  line-height: 1.2;
+  margin-bottom: var(--mb-1);
+}
+
+.home__title span {
+  color: var(--first-color);
+}
+
+.home__description {
+  font-size: var(--h3-font-size);
+  margin-bottom: var(--mb-2-5);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.home__buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.home__image {
+  position: relative;
+}
+
+.home__img {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.home__scroll {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.home__scroll-button {
+  color: var(--white-color);
+  font-size: 2rem;
+  animation: scroll-down 1.5s infinite;
+}
+
+@keyframes scroll-down {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+/*=============== ABOUT ===============*/
+.about {
+  background-color: var(--white-color);
+}
+
+.about__content {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 4rem;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.about__image {
+  position: relative;
+}
+
+.about__img {
+  width: 100%;
+  height: 550px;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.about__title {
+  font-size: var(--h2-font-size);
+  margin-bottom: var(--mb-1);
+  color: var(--first-color);
+}
+
+.about__description {
+  margin-bottom: var(--mb-1-5);
+  text-align: justify;
+}
+
+.about__features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: var(--mb-2);
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.feature i {
+  color: var(--first-color);
+  font-size: 1.25rem;
+}
+
+.feature span {
+  font-weight: var(--font-medium);
+}
+
+/*=============== SERVICES ===============*/
+.services {
+  background-color: var(--container-color);
+}
+
+.services__content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.service__card {
+  background-color: var(--white-color);
+  padding: 3rem 2rem;
+  border-radius: 1rem;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 2px solid transparent;
+}
+
+.service__card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  border-color: var(--first-color);
+}
+
+.service__card--featured {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+  border-color: var(--first-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.service__card--featured::before {
+  content: 'ESPECIAL';
+  position: absolute;
+  top: 15px;
+  right: -30px;
+  background-color: var(--first-color);
+  color: var(--white-color);
+  padding: 5px 40px;
+  font-size: 0.75rem;
+  font-weight: var(--font-bold);
+  transform: rotate(45deg);
+  letter-spacing: 1px;
+}
+
+.service__icon {
+  font-size: 3rem;
+  color: var(--first-color);
+  margin-bottom: var(--mb-1);
+}
+
+.service__title {
+  font-size: var(--h3-font-size);
+  margin-bottom: var(--mb-1);
+}
+
+.service__description {
+  color: var(--text-color);
+  line-height: 1.8;
+}
+
+.services__cta {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.services__cta-text {
+  font-size: var(--h3-font-size);
+  font-weight: var(--font-semi-bold);
+  margin-bottom: var(--mb-1-5);
+  color: var(--title-color);
+}
+
+/*=============== WEDDING ===============*/
+.wedding {
+  background-color: var(--white-color);
+}
+
+.wedding__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.wedding__images {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.wedding__image-main,
+.wedding__image-secondary {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.wedding__image-main {
+  height: 450px;
+}
+
+.wedding__image-secondary {
+  height: 350px;
+}
+
+.wedding__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.wedding__image-main:hover .wedding__img,
+.wedding__image-secondary:hover .wedding__img {
+  transform: scale(1.05);
+}
+
+.wedding__title {
+  font-size: var(--h2-font-size);
+  margin-bottom: var(--mb-1);
+  color: var(--first-color);
+}
+
+.wedding__description {
+  margin-bottom: var(--mb-2);
+  text-align: justify;
+  line-height: 1.8;
+}
+
+.wedding__features {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: var(--mb-2);
+}
+
+.wedding__feature {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.5rem;
+  background-color: var(--container-color);
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+}
+
+.wedding__feature:hover {
+  background-color: var(--white-color);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  transform: translateX(10px);
+}
+
+.wedding__feature i {
+  font-size: 1.5rem;
+  color: var(--first-color);
+  margin-top: 0.25rem;
+}
+
+.wedding__feature-content h4 {
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-semi-bold);
+  margin-bottom: var(--mb-0-25);
+  color: var(--title-color);
+}
+
+.wedding__feature-content p {
+  font-size: var(--small-font-size);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.wedding__cta {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 2px solid var(--first-color);
+  text-align: center;
+}
+
+.wedding__cta-text {
+  font-size: var(--h3-font-size);
+  font-weight: var(--font-semi-bold);
+  margin-bottom: var(--mb-1-5);
+  color: var(--title-color);
+}
+
+.wedding__buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/*=============== GALLERY ===============*/
+.gallery {
+  background-color: var(--white-color);
+}
+
+.gallery__content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.gallery__item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  height: 350px;
+  cursor: pointer;
+}
+
+.gallery__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.gallery__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.gallery__overlay i {
+  font-size: 3rem;
+  color: var(--first-color);
+}
+
+.gallery__item:hover img {
+  transform: scale(1.1);
+}
+
+.gallery__item:hover .gallery__overlay {
+  opacity: 1;
+}
+
+/* Gallery Modal */
+.gallery__modal {
+  display: none;
+  position: fixed;
+  z-index: var(--z-modal);
+  padding-top: 50px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.95);
+}
+
+.gallery__modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 900px;
+  animation: zoom 0.3s;
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.gallery__modal-close {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  color: var(--white-color);
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.gallery__modal-close:hover {
+  color: var(--first-color);
+}
+
+.gallery__modal-caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 900px;
+  text-align: center;
+  color: var(--white-color);
+  padding: 10px 0;
+}
+
+/*=============== CONTACT ===============*/
+.contact {
+  background-color: var(--container-color);
+}
+
+.contact__content {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+.contact__info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.contact__card {
+  background-color: var(--white-color);
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.contact__card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.contact__card-icon {
+  font-size: 2.5rem;
+  color: var(--first-color);
+  margin-bottom: var(--mb-0-75);
+}
+
+.contact__card-title {
+  font-size: var(--h3-font-size);
+  margin-bottom: var(--mb-0-5);
+}
+
+.contact__card-data {
+  display: block;
+  margin-bottom: var(--mb-0-5);
+  color: var(--text-color);
+}
+
+.contact__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--first-color);
+  font-weight: var(--font-medium);
+  margin-top: var(--mb-0-5);
+  transition: gap 0.3s;
+}
+
+.contact__button:hover {
+  gap: 1rem;
+  color: var(--first-color-alt);
+}
+
+.contact__image {
+  position: relative;
+}
+
+.contact__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+/*=============== FOOTER ===============*/
+.footer {
+  background-color: var(--black-color);
+  color: var(--white-color);
+  padding: 4rem 0 2rem;
+}
+
+.footer__content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.footer__logo {
+  height: 60px;
+  width: auto;
+  margin-bottom: var(--mb-1);
+}
+
+.footer__description {
+  font-size: var(--small-font-size);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer__title {
+  font-size: var(--h3-font-size);
+  margin-bottom: var(--mb-1);
+  color: var(--first-color);
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer__link {
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.3s, padding-left 0.3s;
+  font-size: var(--small-font-size);
+  display: inline-block;
+}
+
+a.footer__link:hover {
+  color: var(--first-color);
+  padding-left: 0.5rem;
+}
+
+.footer__social {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: var(--mb-1-5);
+}
+
+.footer__social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--white-color);
+  border-radius: 0.5rem;
+  font-size: 1.25rem;
+  transition: all 0.3s;
+}
+
+.footer__social-link:hover {
+  background-color: var(--first-color);
+  transform: translateY(-3px);
+}
+
+.footer__cta {
+  width: 100%;
+  justify-content: center;
+}
+
+.footer__bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 2rem;
+  text-align: center;
+}
+
+.footer__copy {
+  font-size: var(--small-font-size);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/*=============== SCROLL TOP ===============*/
+.scrolltop {
+  position: fixed;
+  right: 1.5rem;
+  bottom: -20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: var(--first-color);
+  border-radius: 0.5rem;
+  z-index: var(--z-tooltip);
+  transition: 0.4s;
+  width: 45px;
+  height: 45px;
+  color: var(--white-color);
+  font-size: 1.25rem;
+}
+
+.scrolltop:hover {
+  background-color: var(--first-color-alt);
+  transform: translateY(-3px);
+}
+
+.scrolltop.show-scroll {
+  bottom: 3rem;
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For large devices */
+@media screen and (max-width: 1200px) {
+  .container {
+    max-width: 968px;
+  }
+  
+  .home__img {
+    height: 500px;
+  }
+}
+
+@media screen and (max-width: 968px) {
+  .nav__menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 75%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.98);
+    padding: 6rem 2rem 2rem;
+    transition: right 0.4s;
+  }
+  
+  .nav__menu.show-menu {
+    right: 0;
+  }
+  
+  .nav__list {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .nav__link {
+    font-size: var(--h3-font-size);
+  }
+  
+  .nav__close,
+  .nav__toggle {
+    display: block;
+  }
+  
+  .nav__close {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+  }
+  
+  .home__container {
+    grid-template-columns: 1fr;
+  }
+  
+  .home__data {
+    text-align: center;
+    order: 2;
+  }
+  
+  .home__buttons {
+    justify-content: center;
+  }
+  
+  .home__image {
+    order: 1;
+  }
+  
+  .home__img {
+    height: 400px;
+  }
+  
+  .about__content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .about__img {
+    height: 400px;
+  }
+  
+  .about__features {
+    grid-template-columns: 1fr;
+  }
+  
+  .services__content {
+    grid-template-columns: 1fr;
+  }
+  
+  .wedding__content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .wedding__image-main {
+    height: 350px;
+  }
+  
+  .wedding__image-secondary {
+    height: 300px;
+  }
+  
+  .contact__content {
+    grid-template-columns: 1fr;
+  }
+  
+  .contact__info {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer__content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .section {
+    padding: 4.5rem 0 2rem;
+  }
+  
+  .home__buttons {
+    flex-direction: column;
+  }
+  
+  .home__img {
+    height: 300px;
+  }
+  
+  .about__img {
+    height: 300px;
+  }
+  
+  .gallery__content {
+    grid-template-columns: 1fr;
+  }
+  
+  .gallery__item {
+    height: 300px;
+  }
+  
+  .wedding__image-main,
+  .wedding__image-secondary {
+    height: 280px;
+  }
+  
+  .wedding__cta {
+    padding: 1.5rem;
+  }
+  
+  .wedding__buttons {
+    flex-direction: column;
+  }
+  
+  .footer__content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .gallery__modal-content {
+    width: 95%;
+  }
+  
+  .gallery__modal-close {
+    right: 20px;
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .home__title {
+    font-size: 2rem;
+  }
+  
+  .button {
+    padding: 0.75rem 1.5rem;
+  }
+}
+
