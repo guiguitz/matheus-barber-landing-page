@@ -74,6 +74,24 @@ const scrollUp = () => {
 }
 window.addEventListener('scroll', scrollUp);
 
+/*=============== SHOW MOBILE CTA BAR ===============*/
+const showMobileCTA = () => {
+    const mobileCTA = document.getElementById('mobile-cta');
+    const homeSection = document.querySelector('.home');
+    
+    if(mobileCTA && homeSection) {
+        const homeHeight = homeSection.offsetHeight;
+        
+        // Show CTA when user scrolls past home section
+        if(window.scrollY >= homeHeight - 100) {
+            mobileCTA.classList.add('show-cta');
+        } else {
+            mobileCTA.classList.remove('show-cta');
+        }
+    }
+}
+window.addEventListener('scroll', showMobileCTA);
+
 /*=============== SCROLL REVEAL ANIMATION ===============*/
 // Add smooth scroll reveal effect
 const observerOptions = {
@@ -229,27 +247,37 @@ const createWhatsAppButton = () => {
     style.textContent = `
         .whatsapp-float {
             position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 100px;
+            width: 70px;
+            height: 70px;
+            bottom: 90px;
             right: 1.5rem;
             background-color: #25d366;
             color: #FFF;
             border-radius: 50px;
             text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+            font-size: 35px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
             z-index: 100;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s;
+            animation: pulse-whatsapp 2s infinite;
+        }
+        
+        @keyframes pulse-whatsapp {
+            0%, 100% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+            }
+            50% {
+                box-shadow: 0 4px 30px rgba(37, 211, 102, 0.8);
+            }
         }
         
         .whatsapp-float:hover {
             background-color: #20ba5a;
             transform: scale(1.1);
-            box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.7);
         }
         
         .whatsapp-float i {
@@ -258,10 +286,21 @@ const createWhatsAppButton = () => {
         
         @media screen and (max-width: 768px) {
             .whatsapp-float {
-                width: 50px;
-                height: 50px;
-                font-size: 25px;
-                bottom: 80px;
+                width: 65px;
+                height: 65px;
+                font-size: 32px;
+                bottom: 85px;
+                right: 1rem;
+            }
+        }
+        
+        @media screen and (max-width: 576px) {
+            .whatsapp-float {
+                width: 60px;
+                height: 60px;
+                font-size: 28px;
+                bottom: 20px;
+                right: 1rem;
             }
         }
     `;
